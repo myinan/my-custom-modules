@@ -1,0 +1,77 @@
+.slide-circles-container {
+  --hovered: orange;
+  --active: #3f6212;
+
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.slide-container {
+  width: 700px;
+  height: 400px;
+  position: relative;
+}
+
+.carousel-slide {
+  opacity: 0; /* Set initial opacity to 0 */
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  width: 0px;
+  height: 0px;
+}
+
+.carousel-slide img {
+  width: 700px;
+  height: 400px;
+  border-radius: 50px;
+}
+
+.carousel-slide.active {
+  opacity: 1; /* Set opacity to 1 for the active slide */
+  visibility: visible;
+}
+
+.right-svg-container,
+.left-svg-container {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  top: 50%;
+  transform: translate(0%, -50%);
+  z-index: 1;
+}
+
+.right-svg-container {
+  left: 100%;
+}
+
+.left-svg-container {
+  right: 100%;
+}
+
+.slide-container svg {
+  background-color: transparent;
+}
+
+.slide-container svg path:hover {
+  fill: var(--hovered);
+  cursor: pointer;
+}
+
+.circles-container {
+  width: 150px;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.circles-container svg circle:hover {
+  cursor: pointer;
+}
+
+.active-circle circle {
+  fill: var(--active);
+}

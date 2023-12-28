@@ -1,0 +1,12 @@
+{
+  "name": "@myinan/mobile-tabs-menu",
+  "version": "1.0.0",
+  "description": "My custom mobile tabs menu module",
+  "main": "tabs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

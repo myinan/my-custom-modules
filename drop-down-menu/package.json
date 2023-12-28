@@ -1,0 +1,11 @@
+{
+  "name": "@myinan/drop-down-menu",
+  "version": "1.0.0",
+  "description": "My custom dropdown menu module",
+  "main": "dropdown.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "myinan, m.yasir.inan@gmail.com",
+  "license": "ISC"
+}
