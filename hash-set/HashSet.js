@@ -1,6 +1,6 @@
 import LinkedList from "@myinan/linked-list/linkedList";
 
-export default class HashMap {
+export default class HashSet {
   #currentSize = 0;
 
   constructor(initialLength = 16) {
@@ -29,28 +29,21 @@ export default class HashMap {
       if (bucket) {
         let cur = bucket.head;
         while (cur) {
-          this.set(cur.value.key, cur.value.value);
+          this.set(cur.value);
           cur = cur.next;
         }
       }
     });
   }
 
-  set(key, value) {
-    const obj = {
-      key,
-      value,
-    };
-
-    const index = HashMap.#hash(key) % this.tableLength;
+  set(key) {
+    const index = HashSet.#hash(key) % this.tableLength;
     if (this.table[index]) {
-      if (!HashMap.#replaceKey(this.table[index], obj)) {
-        this.table[index].append(obj);
-        this.#currentSize += 1;
-      }
+      this.table[index].append(key);
+      this.#currentSize += 1;
     } else if (!this.table[index]) {
       this.table[index] = new LinkedList();
-      this.table[index].append(obj);
+      this.table[index].append(key);
       this.#currentSize += 1;
     }
 
@@ -61,36 +54,11 @@ export default class HashMap {
     }
   }
 
-  static #replaceKey(list, obj) {
-    let cur = list.head;
-    while (cur) {
-      if (cur.value.key === obj.key) {
-        cur.value.value = obj.value;
-        return true;
-      }
-      cur = cur.next;
-    }
-    return false;
-  }
-
-  get(key) {
-    const index = HashMap.#hash(key) % this.tableLength;
-    let cur = this.table[index].head;
-
-    while (cur) {
-      if (cur.value.key) {
-        return cur.value.value;
-      }
-      cur = cur.next;
-    }
-    return null;
-  }
-
   has(key) {
-    const index = HashMap.#hash(key) % this.tableLength;
+    const index = HashSet.#hash(key) % this.tableLength;
     let cur = this.table[index]?.head;
     while (cur) {
-      if (cur.value.key === key) {
+      if (cur.value === key) {
         return true;
       }
       cur = cur.next;
@@ -99,12 +67,12 @@ export default class HashMap {
   }
 
   remove(key) {
-    const index = HashMap.#hash(key) % this.tableLength;
+    const index = HashSet.#hash(key) % this.tableLength;
     const bucket = this.table[index];
-    let cur = bucket.head;
+    let cur = bucket?.head;
 
     while (cur) {
-      if (cur.value.key === key) {
+      if (cur.value === key) {
         const curIndex = bucket.indexOf(cur.value);
         bucket.removeAt(curIndex);
         this.#currentSize -= 1;
@@ -140,39 +108,11 @@ export default class HashMap {
       if (bucket) {
         let cur = bucket.head;
         while (cur) {
-          keys.push(cur.value.key);
+          keys.push(cur.value);
           cur = cur.next;
         }
       }
     });
     return keys;
-  }
-
-  get values() {
-    const values = [];
-    this.table.forEach((bucket) => {
-      if (bucket) {
-        let cur = bucket.head;
-        while (cur) {
-          values.push(cur.value.value);
-          cur = cur.next;
-        }
-      }
-    });
-    return values;
-  }
-
-  get entries() {
-    const entries = [];
-    this.table.forEach((bucket) => {
-      if (bucket) {
-        let cur = bucket.head;
-        while (cur) {
-          entries.push(cur.value);
-          cur = cur.next;
-        }
-      }
-    });
-    return entries;
   }
 }
