@@ -1,0 +1,15 @@
+{
+  "name": "@myinan/hash-table",
+  "version": "1.0.0",
+  "description": "My custom made linked hash-map module.",
+  "main": "HashMap.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@myinan/linked-list": "^1.0.1"
+  }
+}

@@ -1,4 +1,4 @@
-import Node from "./node";
+import Node from "./node.js";
 
 export default class LinkedList {
   constructor(head = null) {
@@ -7,7 +7,7 @@ export default class LinkedList {
 
   append(value) {
     const newNode = new Node(value);
-    this.tailNode.next = newNode;
+    this.head === null ? (this.head = newNode) : (this.tailNode.next = newNode);
   }
 
   prepend(value) {
@@ -78,7 +78,7 @@ export default class LinkedList {
       if (cur.value === value) return true;
       cur = cur.next;
     }
-    return new Error("There are no nodes in the list with the searched value.");
+    return false;
   }
 
   indexOf(value) {
@@ -86,8 +86,7 @@ export default class LinkedList {
     let cur = this.head;
     let curIndex = 0;
     while (cur) {
-      if (cur.value === value)
-        return `Searched value: ${value}, Index: ${curIndex}`;
+      if (cur.value === value) return curIndex;
       cur = cur.next;
       curIndex += 1;
     }
@@ -128,24 +127,37 @@ export default class LinkedList {
   }
 
   removeAt(index) {
+    if (!this.head) return new Error("The list is empty.");
+
+    if (index === 0) {
+      const removedHead = this.head;
+      this.head = this.head.next;
+      removedHead.next = null;
+      return removedHead;
+    }
+
     let cur = this.head;
-    let tmp = cur;
+    let tmp = null;
     let track = 0;
     let indexInRange = false;
     let removedElement;
+
     while (cur) {
       if (track === index) {
         tmp.next = cur.next;
         cur.next = null;
         removedElement = cur;
         indexInRange = true;
+        break; // exit the loop after removal
       }
+
       tmp = cur;
       cur = cur.next;
       track += 1;
     }
+
     if (!indexInRange)
-      return new Error("Index is outside of the linked list boundries.");
+      return new Error("Index is outside of the linked list boundaries.");
 
     return removedElement;
   }
