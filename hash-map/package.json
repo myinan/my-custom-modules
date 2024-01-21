@@ -1,6 +1,6 @@
 {
-  "name": "@myinan/hash-table",
-  "version": "1.0.0",
+  "name": "@myinan/hash-map",
+  "version": "1.0.1",
   "description": "My custom made linked hash-map module.",
   "main": "HashMap.js",
   "scripts": {
