@@ -1,0 +1,12 @@
+{
+  "name": "@myinan/binary-search-tree",
+  "version": "1.0.0",
+  "description": "My custom made binary-search-tree module.",
+  "main": "balancedBST.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
